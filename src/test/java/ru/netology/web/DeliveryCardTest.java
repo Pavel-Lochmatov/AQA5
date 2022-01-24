@@ -5,11 +5,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -44,8 +42,8 @@ public class DeliveryCardTest {
         $("[data-test-id='phone'] .input__control").setValue("+79877770011");
         $$(".checkbox__box").find(Condition.visible).click();
         $$("button").find(Condition.exactText("Забронировать")).click();
-        $(withText("Встреча успешно забронирована")).shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $(withText("Встреча успешно забронирована")).shouldBe(Condition.text(date));
+        $(withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("[data-test-id='notification']").shouldBe(Condition.text("Встреча успешно забронирована на " + date));
     }
 
     @Test
